@@ -2,7 +2,7 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import site.nomoreparties.stellarburgers.pageObject.MainPage;
+import site.nomoreparties.stellarburgers.pageobject.MainPage;
 
 public class TestConstructor extends BaseTest {
     //Проверка работы перехода по разделам:«Булки», «Соусы», «Начинки».

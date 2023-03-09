@@ -2,16 +2,19 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import site.nomoreparties.stellarburgers.pageObject.LoginPage;
-import site.nomoreparties.stellarburgers.pageObject.MainPage;
-import site.nomoreparties.stellarburgers.pageObject.RegistrationPage;
-import site.nomoreparties.stellarburgers.pageObject.ResetPasswordPage;
+import site.nomoreparties.stellarburgers.api.UserApi;
+import site.nomoreparties.stellarburgers.api.UserPojo;
+import site.nomoreparties.stellarburgers.pageobject.LoginPage;
+import site.nomoreparties.stellarburgers.pageobject.MainPage;
+import site.nomoreparties.stellarburgers.pageobject.RegistrationPage;
+import site.nomoreparties.stellarburgers.pageobject.ResetPasswordPage;
 
 public class TestLogin extends BaseTest {
 
-    MainPage mainPage;
-    LoginPage loginPage;
-    RegistrationPage registerPage;
+    private MainPage mainPage;
+    private LoginPage loginPage;
+    private RegistrationPage registerPage;
+    private UserPojo userPojo;
 
     @Before
     public void setUp() {
@@ -20,27 +23,12 @@ public class TestLogin extends BaseTest {
         loginPage = new LoginPage(driver);
         registerPage = new RegistrationPage(driver);
 
-        //"Войти в аккаунт"
-        mainPage.clickLogin();
-        //ждем загрузки страницы
-        loginPage.waitForLoad();
-        //кликаем на Зарегистроваться
-        loginPage.clickRegister();
-        //ждем загрузки страницы
-        registerPage.waitForLoad();
         //создаем нового пользователя
         String name = "Oleg";
         email = "ios@yandex.ru";
         password = "123456";
-        registerPage.fillRegistrationForm(name, email, password);
-        //клик на кнопку Зарегистрироваться
-        registerPage.clickRegister();
-        //ждем загрузки страницы
-        loginPage.waitForLoad();
-        //клик на логотип
-        loginPage.clickLogo();
-        //Ждем загрузки главной
-        mainPage.waitForLoad();
+        userPojo = new UserPojo(email,password,name);
+        UserApi.createUser(userPojo);
     }
 
     @Test

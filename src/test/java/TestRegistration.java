@@ -2,9 +2,9 @@ import io.qameta.allure.junit4.DisplayName;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import site.nomoreparties.stellarburgers.pageObject.LoginPage;
-import site.nomoreparties.stellarburgers.pageObject.MainPage;
-import site.nomoreparties.stellarburgers.pageObject.RegistrationPage;
+import site.nomoreparties.stellarburgers.pageobject.LoginPage;
+import site.nomoreparties.stellarburgers.pageobject.MainPage;
+import site.nomoreparties.stellarburgers.pageobject.RegistrationPage;
 
 
 public class TestRegistration extends BaseTest {
@@ -33,7 +33,7 @@ public class TestRegistration extends BaseTest {
     public void checkRegisterNewUser() {
         //заполняем форму регистрации
         String name = "Oleg";
-        email = "ios@ya.ru";
+        email = "ios@yandex.ru";
         password = "123456";
         registerPage.fillRegistrationForm(name, email, password);
         //клик на кнопку Зарегистрироваться
@@ -58,7 +58,6 @@ public class TestRegistration extends BaseTest {
         password = "12345";
         registerPage.fillRegistrationForm(name, email, password);
         registerPage.clickRegister();
-        password = null;
         //проверяем что появилась надпись о некорректном пароле
         Assert.assertTrue("Ошибка о некорректном пароле не появилась",
                 registerPage.isIncorrectPasswordLabelVisible());

@@ -28,9 +28,9 @@ public class BaseTest {
 
     @After
     public void tearDown() {
-        if (password != null) {
-            Response response = UserApi.loginUser(new UserPojo(email, password));
-            UserApi.deleteUser(UserApi.getAccessToken(response));
+        String accessToken = UserApi.loginUser(new UserPojo(email,password)).then().extract().path("accessToken");
+        if (accessToken != null) {
+            UserApi.deleteUser(accessToken);
         }
         driver.quit();
     }

@@ -1,4 +1,4 @@
-package site.nomoreparties.stellarburgers.pageObject;
+package site.nomoreparties.stellarburgers.pageobject;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,8 +17,8 @@ public class BasePage {
 
     public void waitForVisibility(By element) {
         new WebDriverWait(driver, Duration.ofSeconds(3));
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        new WebDriverWait(driver, Duration.ofSeconds(5))
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        new WebDriverWait(driver, Duration.ofSeconds(3))
                 .until(ExpectedConditions.visibilityOf(driver.findElement(element)));
     }
 }
